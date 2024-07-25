@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modul.BahasaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- YouTubePlayerView -->
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtubePlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:id="@+id/courseTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belajar Bahasa Indonesia"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/creatorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dibuat oleh Guru SD"
+            android:textSize="16sp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:id="@+id/courseDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 Pelajaran • 10 Jam"
+            android:textSize="14sp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:id="@+id/aboutCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modul ini membantu siswa SD untuk belajar Bahasa Indonesia dengan cara yang menyenangkan dan interaktif."
+            android:textSize="14sp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pelajaran"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <!-- Pelajaran 1 -->
+        <LinearLayout
+            android:id="@+id/lesson1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:paddingBottom="8dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_frame">
+
+            <ImageView
+                android:id="@+id/playButton1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_play_circle"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/lesson1Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1. Mengenal Huruf"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/lesson1Duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 menit"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Pelajaran 2 -->
+        <LinearLayout
+            android:id="@+id/lesson2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:padding="20dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_frame">
+
+            <ImageView
+                android:id="@+id/playButton2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_play_circle"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/lesson2Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2. Membaca Kata"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/lesson2Duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7 menit"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Pelajaran 3 -->
+        <LinearLayout
+            android:id="@+id/lesson3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:padding="20dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_frame">
+
+            <ImageView
+                android:id="@+id/playButton3"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_play_circle"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/lesson3Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3. Menulis Kalimat"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/lesson3Duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 menit"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Tambahkan lebih banyak pelajaran sesuai kebutuhan -->
+
+    </LinearLayout>
+
+</ScrollView>

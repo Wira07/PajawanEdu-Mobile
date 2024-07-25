@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Pajawan Edu Mobile</string>
+    <string name="deskripsi">Desa Pajawanlor adalah desa yang terkenal dengan kekayaan budaya dan keindahan alamnya.</string>
+    <string name="create">PajawanEdu</string>
+    <string name="home">Home</string>
+    <string name="favorites">Favorites</string>
+    <string name="library">Library</string>
+    <string name="profile">profile</string>
+    <string name="back">back</string>
+    <string name="favorite">favorite</string>
+</resources>

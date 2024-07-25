@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="sage_muda">#BFF6C3</color>
+    <color name="sage">#9DAF89</color>
+    <color name="gray">#A1A1A1</color>
+    <color name="search">#DAD0D0</color>
+    <color name="orange">#F2923A</color>
+    <color name="abu">#F3F3F3</color>
+    <color name="primarydark">#211F98</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="background_color">#FAFAFA</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="itemColor">#007BFF</color> <!-- Contoh warna biru -->
+    <color name="itemTextColor">#333333</color> <!-- Contoh warna abu-abu -->
+</resources>

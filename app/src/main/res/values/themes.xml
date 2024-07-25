@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PajawanEduMobile" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimaryDark">@color/primarydark</item>
+        <item name="colorPrimary">@color/primarydark</item>
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.PajawanEduMobile" parent="Base.Theme.PajawanEduMobile" />
+
+    <!-- Customized hint text appearance -->
+    <style name="MyHintTextAppearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">10sp</item> <!-- Ukuran teks hint -->
+    </style>
+
+    <!-- Active state text appearance -->
+    <style name="BottomNavigationActiveText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black_overlay</item>
+    </style>
+
+    <!-- Inactive state text appearance -->
+    <style name="BottomNavigationInactiveText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black_overlay</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,16 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Menentukan warna latar belakang dari bentuk -->
+    <solid android:color="#FFFFFF"/> <!-- Warna latar belakang putih -->
+
+    <!-- Menentukan radius sudut membulat dari bentuk -->
+    <corners android:radius="16dp"/> <!-- Sudut membulat dengan radius 16dp -->
+
+    <!-- Menentukan garis batas dari bentuk -->
+    <stroke
+        android:width="2dp"
+        android:color="#FF0000"/> <!-- Garis batas berwarna merah dengan ketebalan 2dp -->
+
+    <!-- Menambahkan efek bayangan (shadow) ke bentuk (opsional) -->
+    <!-- <padding android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp"/> -->
+    <!-- <size android:width="match_parent" android:height="match_parent"/> -->
+</shape>
