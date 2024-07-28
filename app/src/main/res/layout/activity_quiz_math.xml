@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".quiz.QuizMathActivity">
+
+    <!-- Pertanyaan -->
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="Berapakah hasil dari 7 + 8?"
+        android:textSize="20sp"
+        android:textColor="@android:color/black" />
+
+    <!-- Waktu -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_below="@id/questionText"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="32dp"
+        android:progress="50" />
+
+    <!-- Opsi Jawaban -->
+    <RadioGroup
+        android:id="@+id/answerGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
+        android:layout_marginTop="32dp"
+        android:layout_marginHorizontal="32dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/answer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A. 14"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/answer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="B. 15"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/answer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="C. 16"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/answer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="D. 17"
+            android:textSize="18sp" />
+    </RadioGroup>
+
+    <!-- Tombol Submit -->
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/answerGroup"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:text="Kirim"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white" />
+
+    <!-- Tombol Next dan Previous -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/submitButton"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/previousButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sebelumnya"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Berikutnya"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <!-- Hasil Jawaban -->
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nextButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="@android:color/black" />
+
+    <!-- Navigasi Bawah -->
+</RelativeLayout>

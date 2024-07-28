@@ -15,6 +15,15 @@
         android:theme="@style/Theme.PajawanEduMobile"
         tools:targetApi="31">
         <activity
+            android:name=".quiz.QuizIPSActivity"
+            android:exported="false" />
+        <activity
+            android:name=".quiz.QuizIPAActivity"
+            android:exported="false" />
+        <activity
+            android:name=".quiz.QuizMathActivity"
+            android:exported="false" />
+        <activity
             android:name=".FavoriteActivity"
             android:exported="false" />
         <activity
@@ -42,7 +51,7 @@
             android:name=".modul.MatematikaActivity"
             android:exported="false" />
         <activity
-            android:name=".LibraryActivity"
+            android:name=".QuizActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

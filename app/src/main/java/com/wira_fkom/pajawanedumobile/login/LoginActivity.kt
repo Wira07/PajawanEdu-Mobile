@@ -20,6 +20,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding?.root)
         auth = FirebaseAuth.getInstance()
 
+        // Periksa apakah pengguna sudah login
+        if (auth.currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
         title = "Login Activity"
 
         binding?.btnRegister?.setOnClickListener {

@@ -1,10 +1,11 @@
 package com.wira_fkom.pajawanedumobile
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.wira_fkom.pajawanedumobile.databinding.ActivityProfileBinding
+import com.wira_fkom.pajawanedumobile.login.LoginActivity
+import com.wira_fkom.pajawanedumobile.QuizActivity
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -28,6 +29,15 @@ class ProfileActivity : AppCompatActivity() {
             binding.tvName.text = "Name: $name"
             binding.tvEmail.text = "Email: $email"
         }
+
+        // Tambahkan aksi klik untuk tombol logout
+        binding.btnLogout.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setupBottomNavigation() {
@@ -46,7 +56,7 @@ class ProfileActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_favorite -> {
-                    val intent = Intent(this, LibraryActivity::class.java)
+                    val intent = Intent(this, QuizActivity::class.java)
                     startActivity(intent)
                     true
                 }

@@ -4,11 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.wira_fkom.pajawanedumobile.databinding.ActivityMainBinding
-import com.wira_fkom.pajawanedumobile.modul.BahasaActivity
 import com.wira_fkom.pajawanedumobile.modul.IPAActivity
 import com.wira_fkom.pajawanedumobile.modul.IPSActivity
 import com.wira_fkom.pajawanedumobile.modul.MatematikaActivity
-import com.wira_fkom.pajawanedumobile.modul.PKNActivity
+//import com.wira_fkom.pajawanedumobile.quiz.QuizActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,16 +37,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, IPSActivity::class.java)
             startActivity(intent)
         }
-
-        binding.cardBahasa.setOnClickListener {
-            val intent = Intent(this, BahasaActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.cardPkn.setOnClickListener {
-            val intent = Intent(this, PKNActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun setupBottomNavigation() {
@@ -57,12 +46,12 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_home -> true
                 R.id.navigation_library -> {
-                    val intent = Intent(this, FavoriteActivity::class.java)
+                    val intent = Intent(this, QuizActivity::class.java)
                     startActivity(intent)
                     true
                 }
                 R.id.navigation_favorite -> {
-                    val intent = Intent(this, LibraryActivity::class.java)
+                    val intent = Intent(this, FavoriteActivity::class.java)
                     startActivity(intent)
                     true
                 }
