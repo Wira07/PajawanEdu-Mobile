@@ -1,10 +1,12 @@
 package com.wira_fkom.pajawanedumobile.quiz
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import com.wira_fkom.pajawanedumobile.MainActivity
 import com.wira_fkom.pajawanedumobile.databinding.ActivityQuizMathBinding
-
 class QuizMathActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuizMathBinding
 
@@ -32,9 +34,10 @@ class QuizMathActivity : AppCompatActivity() {
         listOf("8", "9", "10", "11"),
         listOf("4", "5", "6", "7")
     )
-    private val correctAnswers = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
+    private val correctAnswers = listOf(1, 0, 1, 2, 3, 1, 2, 0, 1, 2) // Corrected answer indices
     private var currentQuestionIndex = 0
     private var isAnswerCorrect = false
+    private var score = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +57,10 @@ class QuizMathActivity : AppCompatActivity() {
         binding.previousButton.setOnClickListener {
             previousQuestion()
         }
+
+        binding.homeButton.setOnClickListener {
+            backToHome()
+        }
     }
 
     private fun loadQuestion() {
@@ -70,6 +77,7 @@ class QuizMathActivity : AppCompatActivity() {
         binding.resultText.text = ""
         binding.nextButton.isEnabled = false
         isAnswerCorrect = false
+        binding.homeButton.visibility = View.GONE
     }
 
     private fun checkAnswer() {
@@ -81,6 +89,7 @@ class QuizMathActivity : AppCompatActivity() {
                 binding.resultText.text = "Benar!"
                 binding.nextButton.isEnabled = true
                 isAnswerCorrect = true
+                score++
             } else {
                 binding.resultText.text = "Salah. Jawaban yang benar adalah ${options[currentQuestionIndex][correctAnswers[currentQuestionIndex]]}."
             }
@@ -94,6 +103,8 @@ class QuizMathActivity : AppCompatActivity() {
             if (currentQuestionIndex < questions.size - 1) {
                 currentQuestionIndex++
                 loadQuestion()
+            } else {
+                showFinalScore()
             }
         } else {
             binding.resultText.text = "Jawaban belum benar, coba lagi!"
@@ -106,5 +117,20 @@ class QuizMathActivity : AppCompatActivity() {
             loadQuestion()
         }
     }
-}
 
+    private fun showFinalScore() {
+        binding.questionText.text = "Quiz Selesai!"
+        binding.answerGroup.visibility = View.GONE
+        binding.submitButton.visibility = View.GONE
+        binding.nextButton.visibility = View.GONE
+        binding.previousButton.visibility = View.GONE
+        binding.resultText.text = "Skor Anda: $score dari ${questions.size}"
+        binding.homeButton.visibility = View.VISIBLE
+    }
+
+    private fun backToHome() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Optional: Finish the current activity to prevent back navigation
+    }
+}

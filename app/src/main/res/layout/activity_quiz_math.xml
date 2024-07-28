@@ -118,5 +118,17 @@
         android:textSize="18sp"
         android:textColor="@android:color/black" />
 
-    <!-- Navigasi Bawah -->
+    <!-- Tombol Kembali ke Home -->
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resultText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"
+        android:text="Kembali ke Home"
+        android:visibility="gone"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white" />
+
 </RelativeLayout>
