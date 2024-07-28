@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+    android:background="@color/background_color"
     tools:context=".GetStarted">
 
     <ImageView
         android:id="@+id/Gambar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/pajawanedu" />
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:src="@drawable/pajawanedu"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:text="@string/deskripsi"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
+        android:textColor="@color/primarydark"
         android:fontFamily="@font/poppins_regular"
-        android:layout_below="@+id/Gambar"/>
+        app:layout_constraintTop_toBottomOf="@id/Gambar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:gravity="center"
+        android:textAlignment="center"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
-        android:layout_marginTop="190dp"
-        android:layout_width="200dp"
-        android:textColor="@color/white"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="get started"
-        android:paddingRight="20dp"
-        android:background="@drawable/shape_2"
-        android:layout_centerHorizontal="true"
-        android:drawableEnd="@drawable/next"
-        android:layout_below="@+id/text">
-    </androidx.appcompat.widget.AppCompatButton>
+        android:text="Get Started"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background"
+        app:layout_constraintTop_toBottomOf="@id/text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="30dp"/>
 
     <TextView
+        android:id="@+id/create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create"
-        android:layout_marginTop="200dp"
-        android:layout_below="@id/button"
-        android:layout_centerHorizontal="true"/>
+        android:textColor="@color/primarydark"
+        app:layout_constraintTop_toBottomOf="@id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="190dp"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
