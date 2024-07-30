@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wira_fkom.pajawanedumobile.adapter.ExpertiseAdapter
 import com.wira_fkom.pajawanedumobile.databinding.ActivityQuizBinding
+import com.wira_fkom.pajawanedumobile.quiz.LevelMathActivity
 import com.wira_fkom.pajawanedumobile.quiz.QuizIPAActivity
 import com.wira_fkom.pajawanedumobile.quiz.QuizIPSActivity
 import com.wira_fkom.pajawanedumobile.quiz.QuizMathActivity
@@ -40,7 +41,7 @@ class QuizActivity : AppCompatActivity(), ExpertiseAdapter.OnItemClickListener {
 
     override fun onItemClick(expertise: String) {
         val intent = when (expertise) {
-            "Matematika" -> Intent(this, QuizMathActivity::class.java)
+            "Matematika" -> Intent(this, LevelMathActivity::class.java)
             "IPA" -> Intent(this, QuizIPAActivity::class.java)
             "IPS" -> Intent(this, QuizIPSActivity::class.java)
             else -> null

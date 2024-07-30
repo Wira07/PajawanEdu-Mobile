@@ -11,6 +11,8 @@
     <color name="primarydark">#211F98</color>
     <color name="black_overlay">#66000000</color>
     <color name="background_color">#FAFAFA</color>
+    <!-- res/values/colors.xml -->
+    <color name="primaryColor">#6200EE</color> <!-- Replace with your preferred color -->
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="itemColor">#007BFF</color> <!-- Contoh warna biru -->
