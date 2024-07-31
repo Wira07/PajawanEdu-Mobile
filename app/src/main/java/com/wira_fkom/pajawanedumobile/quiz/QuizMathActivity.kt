@@ -1,5 +1,6 @@
 package com.wira_fkom.pajawanedumobile.quiz
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -10,7 +11,7 @@ import com.wira_fkom.pajawanedumobile.databinding.ActivityQuizMathBinding
 class QuizMathActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuizMathBinding
 
-    // Daftar pertanyaan
+    // List of questions
     private val questions = listOf(
         Question("25 + ? = 50", listOf("25", "15", "5", "10"), 0),
         Question("10 + 5 = ?", listOf("10", "15", "20", "25"), 1),
@@ -22,7 +23,7 @@ class QuizMathActivity : AppCompatActivity() {
         Question("14 / 2 = ?", listOf("5", "6", "7", "8"), 2),
         Question("8 * 2 = ?", listOf("14", "16", "18", "20"), 1),
         Question("18 - 5 = ?", listOf("12", "13", "14", "15"), 1)
-        // Tambahkan lebih banyak pertanyaan sesuai kebutuhan
+        // Add more questions as needed
     )
 
     private var currentQuestionIndex = 0
@@ -35,15 +36,13 @@ class QuizMathActivity : AppCompatActivity() {
 
         loadQuestion(currentQuestionIndex)
 
-        title = "Pajawanlor Books"
-
         binding.firstOptionBtn.setOnClickListener { checkAnswer(0) }
         binding.secondOptionBtn.setOnClickListener { checkAnswer(1) }
         binding.thirdOptionBtn.setOnClickListener { checkAnswer(2) }
         binding.fourthOptionBtn.setOnClickListener { checkAnswer(3) }
 
         binding.twoOptionRemoveBtn.setOnClickListener {
-            // Contoh menghapus dua opsi yang salah (implementasikan logika sesuai kebutuhan)
+            // Example of removing two incorrect options (implement logic as needed)
             Toast.makeText(this, "Dua opsi yang salah telah dihapus", Toast.LENGTH_SHORT).show()
         }
     }
@@ -67,11 +66,35 @@ class QuizMathActivity : AppCompatActivity() {
         val question = questions[currentQuestionIndex]
         if (selectedIndex == question.correctAnswerIndex) {
             correctAnswers++
-            showAlert("Benar!", "Jawaban Anda benar.")
+            showCorrectAnswerDialog()
         } else {
-            showAlert("Salah!", "Jawaban yang benar adalah: ${question.options[question.correctAnswerIndex]}")
+            showIncorrectAnswerDialog(question.options[question.correctAnswerIndex])
         }
+    }
 
+    private fun showCorrectAnswerDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Benar!")
+            .setMessage("Jawaban Anda benar!")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                nextQuestion()
+            }
+            .show()
+    }
+
+    private fun showIncorrectAnswerDialog(correctAnswer: String) {
+        AlertDialog.Builder(this)
+            .setTitle("Salah!")
+            .setMessage("Jawaban yang benar adalah: $correctAnswer")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                nextQuestion()
+            }
+            .show()
+    }
+
+    private fun nextQuestion() {
         currentQuestionIndex++
         if (currentQuestionIndex < questions.size) {
             loadQuestion(currentQuestionIndex)
@@ -80,26 +103,11 @@ class QuizMathActivity : AppCompatActivity() {
         }
     }
 
-    private fun showAlert(title: String, message: String) {
-        AlertDialog.Builder(this)
-            .setTitle(title)
-            .setMessage(message)
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
-    }
-
     private fun showResults() {
-        // Tampilkan hasil kepada pengguna
-        val scoreMessage = "Anda menjawab $correctAnswers dari ${questions.size} pertanyaan dengan benar!"
-        AlertDialog.Builder(this)
-            .setTitle("Hasil Quiz")
-            .setMessage(scoreMessage)
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-                // Opsional: navigasikan kembali ke layar utama atau reset kuis
-            }
-            .show()
+        val intent = Intent(this, TopScoreActivity::class.java)
+        intent.putExtra("CORRECT_ANSWERS", correctAnswers)
+        intent.putExtra("TOTAL_QUESTIONS", questions.size)
+        startActivity(intent)
+        finish() // Optional: finish current activity
     }
 }

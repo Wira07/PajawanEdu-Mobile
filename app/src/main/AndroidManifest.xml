@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PajawanEduMobile"
         tools:targetApi="31">
         <activity
+            android:name=".quiz.TopScoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".quiz.LevelMathActivity"
             android:exported="false" />
         <activity
