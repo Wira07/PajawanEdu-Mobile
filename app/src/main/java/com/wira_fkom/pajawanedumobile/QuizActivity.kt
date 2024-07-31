@@ -29,6 +29,8 @@ class QuizActivity : AppCompatActivity(), ExpertiseAdapter.OnItemClickListener {
 
         expertiseAdapter = ExpertiseAdapter(expertises, this)
 
+        title = "Pajawanlor Books"
+
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@QuizActivity)
             adapter = expertiseAdapter
@@ -41,7 +43,7 @@ class QuizActivity : AppCompatActivity(), ExpertiseAdapter.OnItemClickListener {
 
     override fun onItemClick(expertise: String) {
         val intent = when (expertise) {
-            "Matematika" -> Intent(this, LevelMathActivity::class.java)
+            "Matematika" -> Intent(this, QuizMathActivity::class.java)
             "IPA" -> Intent(this, QuizIPAActivity::class.java)
             "IPS" -> Intent(this, QuizIPSActivity::class.java)
             else -> null

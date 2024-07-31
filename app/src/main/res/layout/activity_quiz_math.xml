@@ -6,129 +6,194 @@
     android:layout_height="match_parent"
     tools:context=".quiz.QuizMathActivity">
 
-    <!-- Pertanyaan -->
-    <TextView
-        android:id="@+id/questionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:text="Berapakah hasil dari 7 + 8?"
-        android:textSize="20sp"
-        android:textColor="@android:color/black" />
-
-    <!-- Waktu -->
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:layout_below="@id/questionText"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="32dp"
-        android:progress="50" />
-
-    <!-- Opsi Jawaban -->
-    <RadioGroup
-        android:id="@+id/answerGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/progressBar"
-        android:layout_marginTop="32dp"
-        android:layout_marginHorizontal="32dp"
-        android:orientation="vertical">
-
-        <RadioButton
-            android:id="@+id/answer1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="A. 14"
-            android:textSize="18sp" />
-
-        <RadioButton
-            android:id="@+id/answer2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="B. 15"
-            android:textSize="18sp" />
-
-        <RadioButton
-            android:id="@+id/answer3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="C. 16"
-            android:textSize="18sp" />
-
-        <RadioButton
-            android:id="@+id/answer4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="D. 17"
-            android:textSize="18sp" />
-    </RadioGroup>
-
-    <!-- Tombol Submit -->
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/answerGroup"
-        android:layout_marginTop="32dp"
-        android:layout_centerHorizontal="true"
-        android:text="Kirim"
-        android:backgroundTint="@android:color/holo_orange_dark"
-        android:textColor="@android:color/white" />
-
-    <!-- Tombol Next dan Previous -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/submitButton"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
+        android:layout_height="match_parent"
+        android:layout_above="@id/twoOptionRemoveBtn"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:weightSum="3">
 
-        <Button
-            android:id="@+id/previousButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sebelumnya"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@android:color/holo_orange_dark"
-            android:textColor="@android:color/white" />
+            android:layout_weight="1"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/white"
+                app:cardElevation="10dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:id="@+id/circularProgressBar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:indeterminateOnly="false"
+                        android:progressDrawable="@drawable/circle_progressbar" />
+
+                    <TextView
+                        android:id="@+id/timeTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/circularProgressBar"
+                        android:layout_alignTop="@id/circularProgressBar"
+                        android:layout_alignEnd="@id/circularProgressBar"
+                        android:layout_alignBottom="@id/circularProgressBar"
+                        android:gravity="center"
+                        android:text="60"
+                        android:textColor="@color/black"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/noOfQuestionTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/circularProgressBar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="8dp"
+                        android:text="Pertanyaan 1/10"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Berikutnya"
-            android:backgroundTint="@android:color/holo_orange_dark"
-            android:textColor="@android:color/white" />
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/white"
+                app:cardElevation="10dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="3dp">
+
+                <TextView
+                    android:id="@+id/questionTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="25 + ? = 50"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#E8E4E4"
+                app:cardElevation="10dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/firstOptionBtn"
+                            style="@style/Widget.App.Button.Outline"
+                            android:layout_width="match_parent"
+                            android:layout_height="?actionBarSize"
+                            android:layout_marginVertical="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:text="25" />
+
+                        <Button
+                            android:id="@+id/secondOptionBtn"
+                            style="@style/Widget.App.Button.Outline"
+                            android:layout_width="match_parent"
+                            android:layout_height="?actionBarSize"
+                            android:layout_marginVertical="4dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:text="15" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/thirdOptionBtn"
+                            style="@style/Widget.App.Button.Outline"
+                            android:layout_width="match_parent"
+                            android:layout_height="?actionBarSize"
+                            android:layout_marginVertical="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:text="5" />
+
+                        <Button
+                            android:id="@+id/fourthOptionBtn"
+                            style="@style/Widget.App.Button.Outline"
+                            android:layout_width="match_parent"
+                            android:layout_height="?actionBarSize"
+                            android:layout_marginVertical="4dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:text="10" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <!-- Hasil Jawaban -->
-    <TextView
-        android:id="@+id/resultText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/nextButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text=""
-        android:textSize="18sp"
-        android:textColor="@android:color/black" />
-
-    <!-- Tombol Kembali ke Home -->
     <Button
-        android:id="@+id/homeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/resultText"
+        android:id="@+id/twoOptionRemoveBtn"
+        style="@style/Widget.App.Button.Outline"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp"
-        android:text="Kembali ke Home"
-        android:visibility="gone"
-        android:backgroundTint="@android:color/holo_orange_dark"
-        android:textColor="@android:color/white" />
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Hapus Dua Pilihan" />
 
 </RelativeLayout>

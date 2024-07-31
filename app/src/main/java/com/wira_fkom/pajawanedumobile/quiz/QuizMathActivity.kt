@@ -1,136 +1,105 @@
 package com.wira_fkom.pajawanedumobile.quiz
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.RadioButton
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.wira_fkom.pajawanedumobile.MainActivity
+import com.wira_fkom.pajawanedumobile.data.Question
 import com.wira_fkom.pajawanedumobile.databinding.ActivityQuizMathBinding
+
 class QuizMathActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuizMathBinding
 
+    // Daftar pertanyaan
     private val questions = listOf(
-        "Berapakah hasil dari 7 + 8?",
-        "Berapakah hasil dari 9 - 3?",
-        "Berapakah hasil dari 6 x 6?",
-        "Berapakah hasil dari 12 / 4?",
-        "Berapakah hasil dari 5 + 9?",
-        "Berapakah hasil dari 10 - 7?",
-        "Berapakah hasil dari 8 x 7?",
-        "Berapakah hasil dari 15 / 3?",
-        "Berapakah hasil dari 4 + 6?",
-        "Berapakah hasil dari 9 - 4?"
+        Question("25 + ? = 50", listOf("25", "15", "5", "10"), 0),
+        Question("10 + 5 = ?", listOf("10", "15", "20", "25"), 1),
+        Question("7 - 3 = ?", listOf("4", "5", "3", "2"), 0),
+        Question("5 * 3 = ?", listOf("15", "10", "20", "8"), 0),
+        Question("9 / 3 = ?", listOf("1", "2", "3", "4"), 2),
+        Question("12 - 8 = ?", listOf("2", "4", "6", "8"), 1),
+        Question("6 + 7 = ?", listOf("11", "12", "13", "14"), 2),
+        Question("14 / 2 = ?", listOf("5", "6", "7", "8"), 2),
+        Question("8 * 2 = ?", listOf("14", "16", "18", "20"), 1),
+        Question("18 - 5 = ?", listOf("12", "13", "14", "15"), 1)
+        // Tambahkan lebih banyak pertanyaan sesuai kebutuhan
     )
-    private val options = listOf(
-        listOf("14", "15", "16", "17"),
-        listOf("5", "6", "7", "8"),
-        listOf("35", "36", "37", "38"),
-        listOf("2", "3", "4", "5"),
-        listOf("12", "13", "14", "15"),
-        listOf("2", "3", "4", "5"),
-        listOf("54", "55", "56", "57"),
-        listOf("4", "5", "6", "7"),
-        listOf("8", "9", "10", "11"),
-        listOf("4", "5", "6", "7")
-    )
-    private val correctAnswers = listOf(1, 0, 1, 2, 3, 1, 2, 0, 1, 2) // Corrected answer indices
+
     private var currentQuestionIndex = 0
-    private var isAnswerCorrect = false
-    private var score = 0
+    private var correctAnswers = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizMathBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadQuestion()
+        loadQuestion(currentQuestionIndex)
 
-        binding.submitButton.setOnClickListener {
-            checkAnswer()
-        }
+        title = "Pajawanlor Books"
 
-        binding.nextButton.setOnClickListener {
-            nextQuestion()
-        }
+        binding.firstOptionBtn.setOnClickListener { checkAnswer(0) }
+        binding.secondOptionBtn.setOnClickListener { checkAnswer(1) }
+        binding.thirdOptionBtn.setOnClickListener { checkAnswer(2) }
+        binding.fourthOptionBtn.setOnClickListener { checkAnswer(3) }
 
-        binding.previousButton.setOnClickListener {
-            previousQuestion()
-        }
-
-        binding.homeButton.setOnClickListener {
-            backToHome()
+        binding.twoOptionRemoveBtn.setOnClickListener {
+            // Contoh menghapus dua opsi yang salah (implementasikan logika sesuai kebutuhan)
+            Toast.makeText(this, "Dua opsi yang salah telah dihapus", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun loadQuestion() {
-        val currentQuestion = questions[currentQuestionIndex]
-        val currentOptions = options[currentQuestionIndex]
+    private fun loadQuestion(index: Int) {
+        if (index >= questions.size) {
+            showResults()
+            return
+        }
 
-        binding.questionText.text = currentQuestion
-        binding.answer1.text = currentOptions[0]
-        binding.answer2.text = currentOptions[1]
-        binding.answer3.text = currentOptions[2]
-        binding.answer4.text = currentOptions[3]
-
-        binding.answerGroup.clearCheck()
-        binding.resultText.text = ""
-        binding.nextButton.isEnabled = false
-        isAnswerCorrect = false
-        binding.homeButton.visibility = View.GONE
+        val question = questions[index]
+        binding.questionTxt.text = question.questionText
+        binding.firstOptionBtn.text = question.options[0]
+        binding.secondOptionBtn.text = question.options[1]
+        binding.thirdOptionBtn.text = question.options[2]
+        binding.fourthOptionBtn.text = question.options[3]
+        binding.noOfQuestionTxt.text = "Pertanyaan ${index + 1}/${questions.size}"
     }
 
-    private fun checkAnswer() {
-        val selectedId = binding.answerGroup.checkedRadioButtonId
-        if (selectedId != -1) {
-            val selectedAnswer = findViewById<RadioButton>(selectedId)
-            val selectedIndex = binding.answerGroup.indexOfChild(selectedAnswer)
-            if (selectedIndex == correctAnswers[currentQuestionIndex]) {
-                binding.resultText.text = "Benar!"
-                binding.nextButton.isEnabled = true
-                isAnswerCorrect = true
-                score++
-            } else {
-                binding.resultText.text = "Salah. Jawaban yang benar adalah ${options[currentQuestionIndex][correctAnswers[currentQuestionIndex]]}."
-            }
+    private fun checkAnswer(selectedIndex: Int) {
+        val question = questions[currentQuestionIndex]
+        if (selectedIndex == question.correctAnswerIndex) {
+            correctAnswers++
+            showAlert("Benar!", "Jawaban Anda benar.")
         } else {
-            binding.resultText.text = "Silakan pilih jawaban."
+            showAlert("Salah!", "Jawaban yang benar adalah: ${question.options[question.correctAnswerIndex]}")
         }
-    }
 
-    private fun nextQuestion() {
-        if (isAnswerCorrect) {
-            if (currentQuestionIndex < questions.size - 1) {
-                currentQuestionIndex++
-                loadQuestion()
-            } else {
-                showFinalScore()
-            }
+        currentQuestionIndex++
+        if (currentQuestionIndex < questions.size) {
+            loadQuestion(currentQuestionIndex)
         } else {
-            binding.resultText.text = "Jawaban belum benar, coba lagi!"
+            showResults()
         }
     }
 
-    private fun previousQuestion() {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--
-            loadQuestion()
-        }
+    private fun showAlert(title: String, message: String) {
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
-    private fun showFinalScore() {
-        binding.questionText.text = "Quiz Selesai!"
-        binding.answerGroup.visibility = View.GONE
-        binding.submitButton.visibility = View.GONE
-        binding.nextButton.visibility = View.GONE
-        binding.previousButton.visibility = View.GONE
-        binding.resultText.text = "Skor Anda: $score dari ${questions.size}"
-        binding.homeButton.visibility = View.VISIBLE
-    }
-
-    private fun backToHome() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish() // Optional: Finish the current activity to prevent back navigation
+    private fun showResults() {
+        // Tampilkan hasil kepada pengguna
+        val scoreMessage = "Anda menjawab $correctAnswers dari ${questions.size} pertanyaan dengan benar!"
+        AlertDialog.Builder(this)
+            .setTitle("Hasil Quiz")
+            .setMessage(scoreMessage)
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                // Opsional: navigasikan kembali ke layar utama atau reset kuis
+            }
+            .show()
     }
 }

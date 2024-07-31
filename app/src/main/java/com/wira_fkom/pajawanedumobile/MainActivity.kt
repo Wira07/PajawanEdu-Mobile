@@ -7,7 +7,6 @@ import com.wira_fkom.pajawanedumobile.databinding.ActivityMainBinding
 import com.wira_fkom.pajawanedumobile.modul.IPAActivity
 import com.wira_fkom.pajawanedumobile.modul.IPSActivity
 import com.wira_fkom.pajawanedumobile.modul.MatematikaActivity
-//import com.wira_fkom.pajawanedumobile.quiz.QuizActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        title = "Smart Pajawan"
+        title = "Pajawanlor Books"
 
         setupBottomNavigation()
 

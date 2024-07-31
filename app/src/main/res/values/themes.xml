@@ -39,6 +39,16 @@
         <item name="cardBackgroundColor">@color/white</item>
     </style>
 
+    <style name="Widget.App.Button.Outline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="shapeAppearance">@style/CutShape</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="strokeColor">@color/black</item>
+        <item name="strokeWidth">3dp</item>
+    </style>
+
 <!--    &lt;!&ndash; res/values/styles.xml &ndash;&gt;-->
 <!--    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">-->
 <!--        <item name="android:background">@color/primaryColor</item>-->
