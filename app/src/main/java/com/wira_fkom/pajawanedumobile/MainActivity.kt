@@ -4,10 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.wira_fkom.pajawanedumobile.databinding.ActivityMainBinding
-import com.wira_fkom.pajawanedumobile.modul.IPAActivity
+import com.wira_fkom.pajawanedumobile.modul.BahasaActivity
 import com.wira_fkom.pajawanedumobile.modul.IPSActivity
 import com.wira_fkom.pajawanedumobile.modul.MatematikaActivity
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -27,12 +26,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.cardIpa.setOnClickListener {
-            val intent = Intent(this, IPAActivity::class.java)
+        binding.cardBahasaIndonesia.setOnClickListener {
+            val intent = Intent(this, BahasaActivity::class.java)
             startActivity(intent)
         }
 
-        binding.cardIps.setOnClickListener {
+        binding.cardIpas.setOnClickListener {
             val intent = Intent(this, IPSActivity::class.java)
             startActivity(intent)
         }

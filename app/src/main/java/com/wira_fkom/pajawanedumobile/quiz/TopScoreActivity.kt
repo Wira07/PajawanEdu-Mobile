@@ -21,7 +21,6 @@ class TopScoreActivity : AppCompatActivity() {
         binding.scoreMessage.text = scoreMessage
 
         binding.collectPrizeButton.setOnClickListener {
-            // Kembali ke layar utama atau aktivitas lain
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

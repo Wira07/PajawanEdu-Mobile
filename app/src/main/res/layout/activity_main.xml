@@ -139,14 +139,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Teknik • 5 menit"
+                    android:text="Matematika • 5 menit"
                     android:textSize="14sp"
                     android:textColor="#888888"/>
             </LinearLayout>
 
-            <!-- Artikel IPA -->
+            <!-- Artikel Bahasa Indonesia -->
             <LinearLayout
-                android:id="@+id/cardIpa"
+                android:id="@+id/cardBahasaIndonesia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -173,14 +173,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Teknik • 5 menit"
+                    android:text="Bahasa Indonesia • 5 menit"
                     android:textSize="14sp"
                     android:textColor="#888888"/>
             </LinearLayout>
 
-            <!-- Artikel IPS -->
+            <!-- Artikel IPAS -->
             <LinearLayout
-                android:id="@+id/cardIps"
+                android:id="@+id/cardIpas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -191,15 +191,20 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="300dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/frontend"
+                    android:src="@drawable/ipas"
                     android:layout_marginBottom="8dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Menguasai Kosakata: Strategi Terbukti untuk Kata Bahasa Inggris yang Efisien..."
+                    android:text="Tujuan Pembelajaran
+
+Peserta didik dapat mengidentifikasi sifat-sifat cahaya dalam kehidupan sehari-hari.
+Peserta didik dapat menyimpulkan hasil percobaan mengenai sifat-sifat cahaya.
+
+"
                     android:textSize="16sp"
                     android:textColor="#000000"
                     android:layout_marginBottom="4dp"/>
@@ -207,7 +212,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Teknik • 5 menit"
+                    android:text="IPAS • 5 menit"
                     android:textSize="14sp"
                     android:textColor="#888888"/>
             </LinearLayout>
