@@ -2,6 +2,7 @@ package com.wira_fkom.pajawanedumobile.quiz
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.wira_fkom.pajawanedumobile.databinding.ActivityQuizBahasaactivityBinding
 
@@ -17,7 +18,7 @@ class QuizIBahasaActivity : AppCompatActivity() {
         Question("Di pulau mana Bali berada?", listOf("Sumatera", "Kalimantan", "Jawa", "Bali"), 3),
         Question("Apa makanan khas Padang?", listOf("Rendang", "Sate", "Gudeg", "Pempek"), 0),
         Question("Siapa penulis novel 'Laskar Pelangi'?", listOf("Andrea Hirata", "Tere Liye", "Ahmad Fuadi", "Dee Lestari"), 0),
-        Question("Apa bahasa resmi Indonesia?", listOf("Bahasa Jawa", "Bahasa Sunda", "Bahasa Indonesia", "Bahasa Bali"), 2),
+        Question("Apa bahasa resmi Indonesia?", listOf("Jawa", "Sunda", "Indonesia", "Bali"), 2),
         Question("Di mana letak Taman Mini Indonesia Indah?", listOf("Jakarta", "Surabaya", "Bandung", "Medan"), 0),
         Question("Apa mata uang Indonesia?", listOf("Rupiah", "Ringgit", "Dollar", "Yen"), 0)
     )
@@ -66,9 +67,26 @@ class QuizIBahasaActivity : AppCompatActivity() {
         val currentQuestion = questions[currentQuestionIndex]
         if (selectedOptionIndex == currentQuestion.correctOptionIndex) {
             score++
+            currentQuestionIndex++
+            loadQuestion()
+        } else {
+            showAlert("Jawaban Salah", "Jawaban yang benar adalah: ${currentQuestion.options[currentQuestion.correctOptionIndex]}")
         }
-        currentQuestionIndex++
-        loadQuestion()
+    }
+
+    private fun showAlert(title: String, message: String) {
+        countDownTimer.cancel() // Pause the timer
+        AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                startTimer() // Resume the timer
+                currentQuestionIndex++
+                loadQuestion()
+            }
+            .setCancelable(false)
+            .show()
     }
 
     private fun removeTwoOptions() {
@@ -77,6 +95,9 @@ class QuizIBahasaActivity : AppCompatActivity() {
     }
 
     private fun startTimer() {
+        if (::countDownTimer.isInitialized) {
+            countDownTimer.cancel()
+        }
         countDownTimer = object : CountDownTimer(timeLeft, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeft = millisUntilFinished

@@ -8,11 +8,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.wira_fkom.pajawanedumobile.data.Question
 import com.wira_fkom.pajawanedumobile.databinding.ActivityQuizMathBinding
+
 class QuizMathActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityQuizMathBinding
-    private lateinit var countDownTimer: CountDownTimer
+    private var countDownTimer: CountDownTimer? = null
     private val countdownTime: Long = 60000 // 60 seconds
     private val interval: Long = 1000 // 1 second
+    private var timeLeft: Long = countdownTime
 
     // List of questions
     private val questions = listOf(
@@ -48,13 +51,13 @@ class QuizMathActivity : AppCompatActivity() {
             // Example of removing two incorrect options (implement logic as needed)
             Toast.makeText(this, "Dua opsi yang salah telah dihapus", Toast.LENGTH_SHORT).show()
         }
-
-        startCountdown()
     }
 
     private fun startCountdown() {
-        countDownTimer = object : CountDownTimer(countdownTime, interval) {
+        countDownTimer?.cancel()
+        countDownTimer = object : CountDownTimer(timeLeft, interval) {
             override fun onTick(millisUntilFinished: Long) {
+                timeLeft = millisUntilFinished
                 val secondsRemaining = millisUntilFinished / 1000
                 binding.timeTxt.text = secondsRemaining.toString()
             }
@@ -62,11 +65,11 @@ class QuizMathActivity : AppCompatActivity() {
             override fun onFinish() {
                 showTimeUpDialog()
             }
-        }
-        countDownTimer.start()
+        }.start()
     }
 
     private fun showTimeUpDialog() {
+        countDownTimer?.cancel()
         AlertDialog.Builder(this)
             .setTitle("Waktu Habis!")
             .setMessage("Waktu Anda telah habis untuk menjawab pertanyaan ini.")
@@ -90,11 +93,13 @@ class QuizMathActivity : AppCompatActivity() {
         binding.thirdOptionBtn.text = question.options[2]
         binding.fourthOptionBtn.text = question.options[3]
         binding.noOfQuestionTxt.text = "Pertanyaan ${index + 1}/${questions.size}"
+
+        timeLeft = countdownTime
         startCountdown()
     }
 
     private fun checkAnswer(selectedIndex: Int) {
-        countDownTimer.cancel()
+        countDownTimer?.cancel()
         val question = questions[currentQuestionIndex]
         if (selectedIndex == question.correctAnswerIndex) {
             correctAnswers++

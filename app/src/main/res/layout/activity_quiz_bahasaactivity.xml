@@ -139,7 +139,7 @@
                             android:layout_marginVertical="4dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="1"
-                            android:text="Andrea Hirata" />
+                            android:text="Andrea" />
 
                         <Button
                             android:id="@+id/secondOptionBtn"
@@ -165,7 +165,7 @@
                             android:layout_marginVertical="4dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="1"
-                            android:text="Ahmad Fuadi" />
+                            android:text="Ahmad" />
 
                         <Button
                             android:id="@+id/fourthOptionBtn"
