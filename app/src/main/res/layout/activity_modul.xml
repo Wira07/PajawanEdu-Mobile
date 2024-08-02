@@ -4,6 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModulActivity">
+    tools:context=".learning.ModulActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="IPAS - Sifat-Sifat Cahaya"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/html_css"
+                    android:layout_marginEnd="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/circle_background"
+                    android:padding="2dp" />
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zidaniro"
+                    android:textColor="@color/black"
+                    android:layout_marginEnd="8dp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/followButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Follow"
+                    android:background="@drawable/follow_button_background"
+                    android:textColor="@color/white"
+                    android:padding="2dp"
+                    android:layout_marginEnd="8dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:src="@drawable/ipas"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cahaya memiliki beberapa sifat yang dapat kita amati dalam kehidupan sehari-hari. Salah satunya adalah bahwa cahaya dapat dipantulkan oleh permukaan cermin atau benda-benda mengkilap lainnya. Selain itu, cahaya juga dapat dibiaskan ketika melewati medium yang berbeda, seperti air dan kaca.\n\nPeserta didik dapat mengidentifikasi sifat-sifat cahaya melalui eksperimen sederhana, seperti menggunakan senter dan cermin untuk melihat pantulan cahaya. Mereka juga dapat mengamati pembiasan cahaya dengan menggunakan gelas berisi air dan pensil."
+                android:textColor="@color/black"
+                android:layout_marginBottom="32dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:padding="12dp"
+        app:itemIconTint="@color/itemColor"
+        app:itemTextColor="@color/itemColor"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

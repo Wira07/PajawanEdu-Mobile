@@ -1,7 +1,8 @@
-package com.wira_fkom.pajawanedumobile
+package com.wira_fkom.pajawanedumobile.learning
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.wira_fkom.pajawanedumobile.R
 
 class ModulActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

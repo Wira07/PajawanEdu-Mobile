@@ -1,13 +1,10 @@
 package com.wira_fkom.pajawanedumobile.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.wira_fkom.pajawanedumobile.data.Course
-import com.wira_fkom.pajawanedumobile.R
+import com.wira_fkom.pajawanedumobile.databinding.ItemCourseBinding
 
 class CourseAdapter(
     private val courseList: List<Course>,
@@ -19,8 +16,8 @@ class CourseAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_course, parent, false)
-        return CourseViewHolder(view)
+        val binding = ItemCourseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CourseViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
@@ -30,20 +27,16 @@ class CourseAdapter(
 
     override fun getItemCount(): Int = courseList.size
 
-    class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val title: TextView = itemView.findViewById(R.id.course_title)
-        private val instructor: TextView = itemView.findViewById(R.id.course_instructor)
-        private val price: TextView = itemView.findViewById(R.id.course_price)
-        private val image: ImageView = itemView.findViewById(R.id.course_image)
+    class CourseViewHolder(private val binding: ItemCourseBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(course: Course, listener: OnItemClickListener) {
-            title.text = course.title
-            instructor.text = course.instructor
-            price.text = course.price
+            binding.courseTitle.text = course.title
+            binding.courseInstructor.text = course.instructor
+            binding.coursePrice.text = course.price
             // Load image using Picasso or Glide
-            // Picasso.get().load(course.imageUrl).into(image)
+            // Picasso.get().load(course.imageUrl).into(binding.courseImage)
 
-            itemView.setOnClickListener {
+            binding.root.setOnClickListener {
                 listener.onItemClick(course)
             }
         }

@@ -24,7 +24,7 @@
             android:name=".quiz.QuizIPSActivity"
             android:exported="false" />
         <activity
-            android:name=".quiz.QuizIPAActivity"
+            android:name=".quiz.QuizIBahasaActivity"
             android:exported="false" />
         <activity
             android:name=".quiz.QuizMathActivity"
@@ -36,7 +36,7 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ModulActivity"
+            android:name=".learning.ModulActivity"
             android:exported="false" />
         <activity
             android:name=".DetailActivity"
