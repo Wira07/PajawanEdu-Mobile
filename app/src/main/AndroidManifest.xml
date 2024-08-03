@@ -26,7 +26,7 @@
             android:name=".quiz.QuizIPSActivity"
             android:exported="false" />
         <activity
-            android:name=".quiz.QuizIBahasaActivity"
+            android:name=".quiz.QuizBahasaActivity"
             android:exported="false" />
         <activity
             android:name=".quiz.QuizMathActivity"

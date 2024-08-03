@@ -80,9 +80,8 @@
                             android:id="@+id/tvName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
+                            android:fontFamily="@font/poppins_regular"
                             android:textColor="#000000"
-                            android:textSize="25sp"
                             android:inputType="textEmailAddress" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,9 +117,8 @@
                             android:id="@+id/tvEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
+                            android:fontFamily="@font/poppins_regular"
                             android:textColor="#000000"
-                            android:textSize="25sp"
                             android:inputType="phone" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,8 +158,8 @@
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:padding="12dp"
-        app:itemIconTint="@color/itemColor"
-        app:itemTextColor="@color/itemColor"
+        app:itemIconTint="@color/primarydark"
+        app:itemTextColor="@color/primarydark"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_item" />
 

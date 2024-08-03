@@ -16,6 +16,8 @@ class GetStarted : AppCompatActivity() {
         binding = ActivityGetStartedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        title = "Get Started"
+
         // Animasi fade in dan zoom in untuk gambar
         val fadeInZoomIn = AnimationUtils.loadAnimation(this, R.anim.fade_in_zoom_in)
         binding.Gambar.startAnimation(fadeInZoomIn)

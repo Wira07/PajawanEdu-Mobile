@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -15,7 +14,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.wira_fkom.pajawanedumobile.databinding.ActivityProfileBinding
 import com.wira_fkom.pajawanedumobile.login.LoginActivity
 import java.util.UUID
-
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
@@ -40,8 +38,8 @@ class ProfileActivity : AppCompatActivity() {
         setupBottomNavigation()
 
         user?.let {
-            val name = it.displayName
-            val email = it.email
+            val name = it.displayName ?: "" // Default to empty string if null
+            val email = it.email ?: "" // Default to empty string if null
 
             binding.tvName.text = Editable.Factory.getInstance().newEditable(name)
             binding.tvEmail.text = Editable.Factory.getInstance().newEditable(email)
@@ -177,3 +175,4 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 }
+

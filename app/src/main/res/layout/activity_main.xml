@@ -226,8 +226,8 @@
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:padding="12dp"
-        app:itemIconTint="@color/itemColor"
-        app:itemTextColor="@color/itemColor"
+        app:itemIconTint="@color/primarydark"
+        app:itemTextColor="@color/primarydark"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_item" />
 

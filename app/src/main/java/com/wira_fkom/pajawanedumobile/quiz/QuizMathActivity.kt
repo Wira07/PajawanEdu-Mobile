@@ -17,6 +17,8 @@ class QuizMathActivity : AppCompatActivity() {
     private val interval: Long = 1000 // 1 second
     private var timeLeft: Long = countdownTime
 
+    private var isActivityRunning = false // Tambahkan variabel ini
+
     // List of questions
     private val questions = listOf(
         Question("25 + ? = 50", listOf("25", "15", "5", "10"), 0),
@@ -40,6 +42,8 @@ class QuizMathActivity : AppCompatActivity() {
         binding = ActivityQuizMathBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        isActivityRunning = true // Set menjadi true saat onCreate
+
         loadQuestion(currentQuestionIndex)
 
         title = "EduKids"
@@ -50,9 +54,13 @@ class QuizMathActivity : AppCompatActivity() {
         binding.fourthOptionBtn.setOnClickListener { checkAnswer(3) }
 
         binding.twoOptionRemoveBtn.setOnClickListener {
-            // Example of removing two incorrect options (implement logic as needed)
             Toast.makeText(this, "Dua opsi yang salah telah dihapus", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        isActivityRunning = false // Set menjadi false saat onDestroy
     }
 
     private fun startCountdown() {
@@ -65,21 +73,25 @@ class QuizMathActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                showTimeUpDialog()
+                if (isActivityRunning) { // Periksa apakah aktivitas masih berjalan
+                    showTimeUpDialog()
+                }
             }
         }.start()
     }
 
     private fun showTimeUpDialog() {
         countDownTimer?.cancel()
-        AlertDialog.Builder(this)
-            .setTitle("Waktu Habis!")
-            .setMessage("Waktu Anda telah habis untuk menjawab pertanyaan ini.")
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-                nextQuestion()
-            }
-            .show()
+        if (isActivityRunning) { // Periksa apakah aktivitas masih berjalan
+            AlertDialog.Builder(this)
+                .setTitle("Waktu Habis!")
+                .setMessage("Waktu Anda telah habis untuk menjawab pertanyaan ini.")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                    nextQuestion()
+                }
+                .show()
+        }
     }
 
     private fun loadQuestion(index: Int) {
@@ -112,25 +124,29 @@ class QuizMathActivity : AppCompatActivity() {
     }
 
     private fun showCorrectAnswerDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Benar!")
-            .setMessage("Jawaban Anda benar!")
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-                nextQuestion()
-            }
-            .show()
+        if (isActivityRunning) { // Periksa apakah aktivitas masih berjalan
+            AlertDialog.Builder(this)
+                .setTitle("Benar!")
+                .setMessage("Jawaban Anda benar!")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                    nextQuestion()
+                }
+                .show()
+        }
     }
 
     private fun showIncorrectAnswerDialog(correctAnswer: String) {
-        AlertDialog.Builder(this)
-            .setTitle("Salah!")
-            .setMessage("Jawaban yang benar adalah: $correctAnswer")
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-                nextQuestion()
-            }
-            .show()
+        if (isActivityRunning) { // Periksa apakah aktivitas masih berjalan
+            AlertDialog.Builder(this)
+                .setTitle("Salah!")
+                .setMessage("Jawaban yang benar adalah: $correctAnswer")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                    nextQuestion()
+                }
+                .show()
+        }
     }
 
     private fun nextQuestion() {
@@ -143,10 +159,12 @@ class QuizMathActivity : AppCompatActivity() {
     }
 
     private fun showResults() {
-        val intent = Intent(this, TopScoreActivity::class.java)
-        intent.putExtra("CORRECT_ANSWERS", correctAnswers)
-        intent.putExtra("TOTAL_QUESTIONS", questions.size)
-        startActivity(intent)
-        finish() // Optional: finish current activity
+        if (isActivityRunning) { // Periksa apakah aktivitas masih berjalan
+            val intent = Intent(this, TopScoreActivity::class.java)
+            intent.putExtra("CORRECT_ANSWERS", correctAnswers)
+            intent.putExtra("TOTAL_QUESTIONS", questions.size)
+            startActivity(intent)
+            finish() // Optional: finish current activity
+        }
     }
 }
