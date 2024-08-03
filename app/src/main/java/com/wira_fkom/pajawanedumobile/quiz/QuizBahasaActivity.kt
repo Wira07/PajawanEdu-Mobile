@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.wira_fkom.pajawanedumobile.databinding.ActivityQuizBahasaactivityBinding
 
-class QuizIBahasaActivity : AppCompatActivity() {
+class QuizBahasaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityQuizBahasaactivityBinding
 

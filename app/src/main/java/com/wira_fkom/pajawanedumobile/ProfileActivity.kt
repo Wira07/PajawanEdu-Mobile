@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -41,8 +43,8 @@ class ProfileActivity : AppCompatActivity() {
             val name = it.displayName
             val email = it.email
 
-            binding.tvName.text = "Name: $name"
-            binding.tvEmail.text = "Email: $email"
+            binding.tvName.text = Editable.Factory.getInstance().newEditable(name)
+            binding.tvEmail.text = Editable.Factory.getInstance().newEditable(email)
 
             // Load profile image if available
             loadProfileImage(user.uid)
