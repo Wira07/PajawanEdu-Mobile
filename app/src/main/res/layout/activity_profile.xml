@@ -18,6 +18,20 @@
         android:scaleType="centerCrop"
         android:background="@drawable/circle_background" />
 
+    <!-- Upload Image Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivProfileImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Upload Image"
+        android:background="@drawable/shape_2"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:padding="12dp" />
+
     <!-- Profile Title -->
     <TextView
         android:id="@+id/tvProfileTitle"
@@ -27,7 +41,7 @@
         android:textSize="26sp"
         android:textStyle="bold"
         android:textColor="@color/primary_text"
-        android:layout_below="@id/ivProfileImage"
+        android:layout_below="@id/btnUploadImage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 

@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:textSize="16dp"
-        android:text="di aplikasi PajawanEdu"
+        android:text="di aplikasi EduKids"
         android:layout_below="@id/welcome_back" />
 
     <LinearLayout
