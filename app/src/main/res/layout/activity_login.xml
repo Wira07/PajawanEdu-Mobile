@@ -12,7 +12,7 @@
         android:id="@+id/gambar_1"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/pajawanedu"
+        android:src="@drawable/logo_edukids"
         android:layout_centerHorizontal="true"/>
 
     <TextView

@@ -8,17 +8,16 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:src="@drawable/pajawanedu"/>
+        android:layout_marginTop="100dp"
+        android:src="@drawable/logo_edukids"/>
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PajawanLor"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_black"
         android:layout_below="@id/image"

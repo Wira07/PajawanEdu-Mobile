@@ -28,7 +28,7 @@ class QuizActivity : AppCompatActivity(), ExpertiseAdapter.OnItemClickListener {
 
         expertiseAdapter = ExpertiseAdapter(expertises, this)
 
-        title = "Pajawanlor Books"
+        title = "EduKids"
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@QuizActivity)

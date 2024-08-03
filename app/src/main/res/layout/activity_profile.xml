@@ -6,7 +6,6 @@
     android:background="@color/background_color"
     tools:context=".ProfileActivity">
 
-    <!-- Profile Image -->
     <ImageView
         android:id="@+id/ivProfileImage"
         android:layout_width="120dp"
@@ -18,7 +17,6 @@
         android:scaleType="centerCrop"
         android:background="@drawable/circle_background" />
 
-    <!-- Upload Image Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnUploadImage"
         android:layout_width="wrap_content"
@@ -32,7 +30,6 @@
         android:textSize="16sp"
         android:padding="12dp" />
 
-    <!-- Profile Title -->
     <TextView
         android:id="@+id/tvProfileTitle"
         android:layout_width="wrap_content"
@@ -43,9 +40,8 @@
         android:textColor="@color/primary_text"
         android:layout_below="@id/btnUploadImage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="50dp"/>
 
-    <!-- Name TextView -->
     <TextView
         android:id="@+id/tvName"
         android:layout_width="300dp"
@@ -62,7 +58,6 @@
         android:textColor="@color/secondary_text"
         android:textSize="18sp" />
 
-    <!-- Email TextView -->
     <TextView
         android:id="@+id/tvEmail"
         android:layout_width="300dp"
@@ -76,7 +71,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"/>
 
-    <!-- Logout Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogout"
         android:layout_width="180dp"
@@ -90,7 +84,6 @@
         android:textSize="16sp"
         android:padding="12dp"/>
 
-    <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"

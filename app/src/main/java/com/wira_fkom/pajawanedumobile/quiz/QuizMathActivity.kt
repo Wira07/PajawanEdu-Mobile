@@ -42,6 +42,8 @@ class QuizMathActivity : AppCompatActivity() {
 
         loadQuestion(currentQuestionIndex)
 
+        title = "EduKids"
+
         binding.firstOptionBtn.setOnClickListener { checkAnswer(0) }
         binding.secondOptionBtn.setOnClickListener { checkAnswer(1) }
         binding.thirdOptionBtn.setOnClickListener { checkAnswer(2) }

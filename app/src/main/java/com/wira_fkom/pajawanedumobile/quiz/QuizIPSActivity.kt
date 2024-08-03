@@ -19,17 +19,16 @@ class QuizIPSActivity : AppCompatActivity() {
 
     // List of questions
     private val questions = listOf(
-        Question("Siapa Presiden pertama Indonesia?", listOf("Soekarno", "Suharto", "Habibie", "Megawati"), 0),
-        Question("Apa ibu kota negara Indonesia?", listOf("Surabaya", "Bandung", "Jakarta", "Medan"), 2),
-        Question("Kapan Proklamasi Kemerdekaan Indonesia?", listOf("17 Agustus 1945", "20 Mei 1945", "1 Juni 1945", "10 November 1945"), 0),
-        Question("Siapa penulis novel 'Laskar Pelangi'?", listOf("Andrea Hirata", "Pramoedya Ananta Toer", "Ahmad Tohari", "Dee Lestari"), 0),
-        Question("Apa mata uang negara Indonesia?", listOf("Rupiah", "Ringgit", "Baht", "Peso"), 0),
-        Question("Dimana Candi Borobudur berada?", listOf("Jawa Timur", "Jawa Barat", "Jawa Tengah", "Bali"), 2),
-        Question("Apa gunung tertinggi di Indonesia?", listOf("Gunung Semeru", "Gunung Rinjani", "Gunung Kerinci", "Puncak Jaya"), 3),
-        Question("Siapa penemu lambang negara Indonesia?", listOf("Sultan Hamid II", "Mohammad Hatta", "Soedirman", "Ahmad Yani"), 0),
-        Question("Apa nama tari tradisional dari Bali?", listOf("Tari Kecak", "Tari Saman", "Tari Piring", "Tari Jaipong"), 0),
-        Question("Dimana tempat kelahiran Pancasila?", listOf("Jakarta", "Bandung", "Yogyakarta", "Surabaya"), 2)
-        // Add more questions as needed
+        Question("Presiden pertama?", listOf("Soekarno", "Hatta", "Suharto", "Habibie"), 0),
+        Question("Ibu kota?", listOf("Jakarta", "Bandung", "Surabaya", "Medan"), 0),
+        Question("Proklamasi?", listOf("17 Aug", "20 Mei", "1 Jun", "10 Nov"), 0),
+        Question("Penulis 'Laskar Pelangi'?", listOf("Andrea", "Pramoedya", "Ahmad", "Dee"), 0),
+        Question("Mata uang?", listOf("Rupiah", "Ringgit", "Baht", "Peso"), 0),
+        Question("Borobudur?", listOf("Jatim", "Jabar", "Jateng", "Bali"), 2),
+        Question("Gunung tertinggi?", listOf("Semeru", "Rinjani", "Kerinci", "Jaya"), 3),
+        Question("Penemu lambang?", listOf("Hamid", "Hatta", "Sud", "Yani"), 0),
+        Question("Tari Bali?", listOf("Kecak", "Saman", "Piring", "Jaipong"), 0),
+        Question("Kelahiran Pancasila?", listOf("Jakarta", "Bandung", "Jogja", "Surabaya"), 2)
     )
 
     private var currentQuestionIndex = 0
@@ -41,6 +40,8 @@ class QuizIPSActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadQuestion(currentQuestionIndex)
+
+        title = "EduKids"
 
         binding.firstOptionBtn.setOnClickListener { checkAnswer(0) }
         binding.secondOptionBtn.setOnClickListener { checkAnswer(1) }

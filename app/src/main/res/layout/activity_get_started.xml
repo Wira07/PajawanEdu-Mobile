@@ -10,9 +10,9 @@
 
     <ImageView
         android:id="@+id/Gambar"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:src="@drawable/pajawanedu"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/logo_edukids"
         android:contentDescription="@string/app_name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:paddingVertical="10dp"
         android:paddingHorizontal="30dp"/>
 

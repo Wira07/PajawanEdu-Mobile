@@ -11,16 +11,16 @@ class QuizIBahasaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuizBahasaactivityBinding
 
     private val questions = listOf(
-        Question("Apa ibu kota Indonesia?", listOf("Jakarta", "Bandung", "Surabaya", "Medan"), 0),
-        Question("Di mana candi Borobudur berada?", listOf("Yogyakarta", "Magelang", "Solo", "Semarang"), 1),
-        Question("Siapa presiden pertama Indonesia?", listOf("Sukarno", "Suharto", "Jokowi", "Habibie"), 0),
-        Question("Apa nama ibu kota Sumatera Utara?", listOf("Medan", "Padang", "Pekanbaru", "Banda Aceh"), 0),
-        Question("Di pulau mana Bali berada?", listOf("Sumatera", "Kalimantan", "Jawa", "Bali"), 3),
-        Question("Apa makanan khas Padang?", listOf("Rendang", "Sate", "Gudeg", "Pempek"), 0),
-        Question("Siapa penulis novel 'Laskar Pelangi'?", listOf("Andrea Hirata", "Tere Liye", "Ahmad Fuadi", "Dee Lestari"), 0),
-        Question("Apa bahasa resmi Indonesia?", listOf("Jawa", "Sunda", "Indonesia", "Bali"), 2),
-        Question("Di mana letak Taman Mini Indonesia Indah?", listOf("Jakarta", "Surabaya", "Bandung", "Medan"), 0),
-        Question("Apa mata uang Indonesia?", listOf("Rupiah", "Ringgit", "Dollar", "Yen"), 0)
+        Question("Hewan tercepat?", listOf("Cheetah", "Kelinci", "Singa", "Gajah"), 0),
+        Question("Planet terdekat ke Matahari?", listOf("Merkurius", "Venus", "Bumi", "Mars"), 0),
+        Question("Buah berwarna merah?", listOf("Apel", "Pisang", "Anggur", "Melon"), 0),
+        Question("Ibukota Jepang?", listOf("Tokyo", "Osaka", "Kyoto", "Nagasaki"), 0),
+        Question("Bendera merah putih?", listOf("Indonesia", "Malaysia", "Singapura", "Thailand"), 0),
+        Question("Gunung tertinggi?", listOf("Everest", "Fuji", "Kilimanjaro", "Alpen"), 0),
+        Question("Laut terluas?", listOf("Pasifik", "Atlantik", "Hindia", "Arktik"), 0),
+        Question("Bulan terbesar?", listOf("Ganymede", "Titan", "Europa", "Callisto"), 0),
+        Question("Hewan mamalia?", listOf("Paus", "Ikan", "Katak", "Kura-kura"), 0),
+        Question("Bahan utama roti?", listOf("Gandum", "Beras", "Jagung", "Kacang"), 0)
     )
 
     private var currentQuestionIndex = 0
@@ -36,6 +36,8 @@ class QuizIBahasaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadQuestion()
+
+        title = "EduKids"
 
         binding.firstOptionBtn.setOnClickListener { checkAnswer(0) }
         binding.secondOptionBtn.setOnClickListener { checkAnswer(1) }
@@ -67,26 +69,28 @@ class QuizIBahasaActivity : AppCompatActivity() {
         val currentQuestion = questions[currentQuestionIndex]
         if (selectedOptionIndex == currentQuestion.correctOptionIndex) {
             score++
-            currentQuestionIndex++
-            loadQuestion()
+            showAlert("Jawaban Benar", "Anda benar!", ::nextQuestion)
         } else {
-            showAlert("Jawaban Salah", "Jawaban yang benar adalah: ${currentQuestion.options[currentQuestion.correctOptionIndex]}")
+            showAlert("Jawaban Salah", "Jawaban yang benar adalah: ${currentQuestion.options[currentQuestion.correctOptionIndex]}", ::nextQuestion)
         }
     }
 
-    private fun showAlert(title: String, message: String) {
+    private fun showAlert(title: String, message: String, onDismiss: () -> Unit) {
         countDownTimer.cancel() // Pause the timer
         AlertDialog.Builder(this)
             .setTitle(title)
             .setMessage(message)
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
-                startTimer() // Resume the timer
-                currentQuestionIndex++
-                loadQuestion()
+                onDismiss()
             }
             .setCancelable(false)
             .show()
+    }
+
+    private fun nextQuestion() {
+        currentQuestionIndex++
+        loadQuestion()
     }
 
     private fun removeTwoOptions() {
@@ -106,8 +110,7 @@ class QuizIBahasaActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                currentQuestionIndex++
-                loadQuestion()
+                nextQuestion()
             }
         }.start()
     }
