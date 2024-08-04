@@ -1,12 +1,14 @@
 package com.wira_fkom.pajawanedumobile
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.wira_fkom.pajawanedumobile.databinding.ActivityMainBinding
 import com.wira_fkom.pajawanedumobile.modul.BahasaActivity
 import com.wira_fkom.pajawanedumobile.modul.IPSActivity
 import com.wira_fkom.pajawanedumobile.modul.MatematikaActivity
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -17,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         title = "EduKids"
+
+        // Get username from SharedPreferences
+        val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", "User")
+        binding.welcomeText.text = "Halo, $username!"
 
         setupBottomNavigation()
 
