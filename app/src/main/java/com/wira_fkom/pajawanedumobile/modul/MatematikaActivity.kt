@@ -56,7 +56,7 @@ class MatematikaActivity : AppCompatActivity() {
         lifecycle.addObserver(binding.youtubePlayerView)
         binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo("gLy3HIx2DfE", 0f) // Update with a relevant Matematika video ID
+                youTubePlayer.loadVideo("8Cqtz8tYcY8", 0f) // Update with a relevant Matematika video ID
             }
         })
     }

@@ -17,6 +17,8 @@ class DetailArtikel : AppCompatActivity() {
         binding = ActivityDetailArtikelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        title = "Deskrpisi Aplikasi"
+
         // Mendapatkan data dari Intent
         val title = intent.getStringExtra("title")
         val description = intent.getStringExtra("description")
@@ -25,6 +27,8 @@ class DetailArtikel : AppCompatActivity() {
         // Mengisi view dengan data yang didapatkan
         binding.tvTitle.text = title
         binding.tvDescription.text = description
+
+        overridePendingTransition(R.anim.fade_in_slide_up, R.anim.fade_in)
 
         Glide.with(this)
             .load(imageUrl)

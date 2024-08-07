@@ -56,7 +56,7 @@ class BahasaActivity : AppCompatActivity() {
         lifecycle.addObserver(binding.youtubePlayerView)
         binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo("gLy3HIx2DfE", 0f)
+                youTubePlayer.loadVideo("apGZ0kTbuk", 0f)
             }
         })
     }

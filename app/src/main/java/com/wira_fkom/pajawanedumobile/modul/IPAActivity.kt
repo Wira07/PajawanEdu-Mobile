@@ -56,7 +56,7 @@ class IPAActivity : AppCompatActivity() {
         lifecycle.addObserver(binding.youtubePlayerView)
         binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo("gLy3HIx2DfE", 0f)
+                youTubePlayer.loadVideo("bTIv321WFzg", 0f)
             }
         })
     }
