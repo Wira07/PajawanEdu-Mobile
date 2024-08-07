@@ -105,9 +105,10 @@
                             android:layout_marginBottom="8dp"/>
 
                         <Button
+                            android:id="@+id/buttonArtikel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mulai kursus"
+                            android:text="Baca Artikel"
                             android:backgroundTint="#6200EE"
                             android:textColor="#ffffff"
                             android:elevation="2dp"/>

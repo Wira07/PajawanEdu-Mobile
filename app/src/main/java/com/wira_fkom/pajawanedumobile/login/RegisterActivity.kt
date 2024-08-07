@@ -3,7 +3,9 @@ package com.wira_fkom.pajawanedumobile.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -31,7 +33,30 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
+        // Disable the sign in button initially
+        binding.SignIn2.isEnabled = false
+
+        // Add text change listeners to enable the sign in button only when form is valid
+        binding.etSinUpName.addTextChangedListener(textWatcher)
+        binding.etSinUpEmail.addTextChangedListener(textWatcher)
+        binding.etSinUpPassword.addTextChangedListener(textWatcher)
+
         binding.SignIn2.setOnClickListener { registerUser() }
+    }
+
+    private val textWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            enableSignInButtonIfFormValid()
+        }
+        override fun afterTextChanged(s: Editable?) {}
+    }
+
+    private fun enableSignInButtonIfFormValid() {
+        val name = binding.etSinUpName.text.toString()
+        val email = binding.etSinUpEmail.text.toString()
+        val password = binding.etSinUpPassword.text.toString()
+        binding.SignIn2.isEnabled = validateForm(name, email, password)
     }
 
     private fun registerUser() {
@@ -39,51 +64,63 @@ class RegisterActivity : AppCompatActivity() {
         val email = binding.etSinUpEmail.text.toString()
         val password = binding.etSinUpPassword.text.toString()
 
-        if (validateForm(name, email, password)) {
-            showProgressBar()
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    hideProgressBar()
-                    if (task.isSuccessful) {
-                        val user = auth.currentUser
-                        user?.let {
-                            val profileUpdates = UserProfileChangeRequest.Builder()
-                                .setDisplayName(name)
-                                .build()
-                            it.updateProfile(profileUpdates)
-                                .addOnCompleteListener { profileUpdateTask ->
-                                    if (profileUpdateTask.isSuccessful) {
-                                        showToast("User successfully created")
-                                        saveUsernameToPreferences(name)
-                                        navigateToMain(it)
-                                    } else {
-                                        showToast("Failed to update profile")
-                                    }
-                                }
-                        }
-                    } else {
-                        showToast("Oops! Something went wrong")
-                    }
-                }
+        if (!validateForm(name, email, password)) {
+            showToast("Semua data harus diisi dengan benar.")
+            return
         }
+
+        showProgressBar()
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                hideProgressBar()
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    user?.let {
+                        val profileUpdates = UserProfileChangeRequest.Builder()
+                            .setDisplayName(name)
+                            .build()
+                        it.updateProfile(profileUpdates)
+                            .addOnCompleteListener { profileUpdateTask ->
+                                if (profileUpdateTask.isSuccessful) {
+                                    showToast("User berhasil dibuat")
+                                    saveUsernameToPreferences(name)
+                                    navigateToMain(it)
+                                } else {
+                                    showToast("Gagal memperbarui profil")
+                                }
+                            }
+                    }
+                } else {
+                    showToast("Oops! Terjadi kesalahan")
+                }
+            }
     }
 
     private fun validateForm(name: String, email: String, password: String): Boolean {
-        return when {
-            TextUtils.isEmpty(name) -> {
-                binding.tilName.error = "Enter name"
-                false
-            }
-            TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                binding.tilEmail.error = "Enter a valid email address"
-                false
-            }
-            TextUtils.isEmpty(password) -> {
-                binding.tilPassword.error = "Enter password"
-                false
-            }
-            else -> true
+        var valid = true
+
+        if (TextUtils.isEmpty(name)) {
+            binding.tilName.error = "Masukkan nama"
+            valid = false
+        } else {
+            binding.tilName.error = null
         }
+
+        if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.tilEmail.error = "Masukkan alamat email yang valid"
+            valid = false
+        } else {
+            binding.tilEmail.error = null
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            binding.tilPassword.error = "Masukkan kata sandi"
+            valid = false
+        } else {
+            binding.tilPassword.error = null
+        }
+
+        return valid
     }
 
     private fun navigateToMain(user: FirebaseUser) {

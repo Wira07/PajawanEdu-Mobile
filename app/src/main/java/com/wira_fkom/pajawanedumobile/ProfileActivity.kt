@@ -1,12 +1,15 @@
 package com.wira_fkom.pajawanedumobile
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NavUtils
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -14,6 +17,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.wira_fkom.pajawanedumobile.databinding.ActivityProfileBinding
 import com.wira_fkom.pajawanedumobile.login.LoginActivity
 import java.util.UUID
+
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
@@ -29,6 +33,7 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         title = "EduKids"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable the Up button
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
@@ -145,6 +150,9 @@ class ProfileActivity : AppCompatActivity() {
                 // Log the download URI
                 Log.d("ProfileActivity", "Image URL: $downloadUri")
 
+                // Save the image URL to SharedPreferences
+                saveImageUrlToPreferences(downloadUri)
+
                 // Update UI with the new image using Glide
                 Glide.with(this)
                     .load(downloadUri)
@@ -158,21 +166,51 @@ class ProfileActivity : AppCompatActivity() {
             }
     }
 
-    private fun loadProfileImage(userId: String) {
-        val userDocRef = firestore.collection("users").document(userId)
-        userDocRef.get().addOnSuccessListener { document ->
-            val profileImageUrl = document.getString("profileImageUrl")
-            if (profileImageUrl != null) {
-                // Log the profile image URL
-                Log.d("ProfileActivity", "Profile Image URL: $profileImageUrl")
+    private fun saveImageUrlToPreferences(downloadUri: String) {
+        val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("profileImageUrl", downloadUri)
+        editor.apply()
+    }
 
-                Glide.with(this)
-                    .load(profileImageUrl)
-                    .placeholder(R.drawable.ic_profile_placeholder)
-                    .error(R.drawable.ic_profile_placeholder)
-                    .into(binding.ivProfileImage)
+    private fun loadProfileImage(userId: String) {
+        val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val profileImageUrl = sharedPreferences.getString("profileImageUrl", null)
+
+        if (profileImageUrl != null) {
+            // Load the profile image from SharedPreferences
+            Glide.with(this)
+                .load(profileImageUrl)
+                .placeholder(R.drawable.ic_profile_placeholder)
+                .error(R.drawable.ic_profile_placeholder)
+                .into(binding.ivProfileImage)
+        } else {
+            // Load the profile image from Firestore if not available in SharedPreferences
+            val userDocRef = firestore.collection("users").document(userId)
+            userDocRef.get().addOnSuccessListener { document ->
+                val imageUrl = document.getString("profileImageUrl")
+                if (imageUrl != null) {
+                    // Save the image URL to SharedPreferences
+                    saveImageUrlToPreferences(imageUrl)
+
+                    // Load the profile image using Glide
+                    Glide.with(this)
+                        .load(imageUrl)
+                        .placeholder(R.drawable.ic_profile_placeholder)
+                        .error(R.drawable.ic_profile_placeholder)
+                        .into(binding.ivProfileImage)
+                }
             }
         }
     }
-}
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+}
