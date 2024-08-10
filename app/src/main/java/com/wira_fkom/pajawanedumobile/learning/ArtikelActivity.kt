@@ -1,19 +1,16 @@
 package com.wira_fkom.pajawanedumobile.learning
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.wira_fkom.pajawanedumobile.R
 import com.wira_fkom.pajawanedumobile.adapter.ArticleAdapter
 import com.wira_fkom.pajawanedumobile.data.Article
 import com.wira_fkom.pajawanedumobile.databinding.ActivityArtikelBinding
-
 class ArtikelActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityArtikelBinding
 
+    private lateinit var binding: ActivityArtikelBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityArtikelBinding.inflate(layoutInflater)
@@ -63,7 +60,6 @@ class ArtikelActivity : AppCompatActivity() {
                 "https://awsimages.detik.net.id/community/media/visual/2020/07/02/foto-sejarah-sepeda-3_169.jpeg?w=600&q=90")
         )
 
-
         val adapter = ArticleAdapter(articles) { article ->
             val intent = Intent(this, DetailArtikel::class.java).apply {
                 putExtra("title", article.title)
@@ -71,20 +67,19 @@ class ArtikelActivity : AppCompatActivity() {
                 putExtra("imageUrl", article.imageUrl)
             }
             startActivity(intent)
-            overridePendingTransition(R.anim.scale_up_fade_in, R.anim.fade_in_zoom_in)
         }
 
         binding.itemKu.layoutManager = LinearLayoutManager(this)
         binding.itemKu.adapter = adapter
 
         // Menerapkan animasi pada RecyclerView
-        binding.itemKu.visibility = View.INVISIBLE
-        binding.itemKu.postDelayed({
-            val fadeIn = ObjectAnimator.ofFloat(binding.itemKu, "alpha", 0f, 1f)
-            fadeIn.duration = 1000
-            fadeIn.start()
-            binding.itemKu.visibility = View.VISIBLE
-        }, 200)
-
+        binding.itemKu.alpha = 0f
+        binding.itemKu.visibility = View.VISIBLE
+        binding.itemKu.animate()
+            .alpha(1f)
+            .setDuration(1000)
+            .setStartDelay(200)
+            .start()
     }
 }
+
