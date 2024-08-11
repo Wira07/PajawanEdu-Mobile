@@ -3,6 +3,7 @@ package com.wira_fkom.pajawanedumobile.learning
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,7 @@ class DetailArtikel : AppCompatActivity() {
         setContentView(binding.root)
 
         title = "Deskripsi Aplikasi"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable the Up button
 
         // Mendapatkan data dari Intent
         val title = intent.getStringExtra("title")
@@ -76,5 +78,15 @@ class DetailArtikel : AppCompatActivity() {
         // Menghapus animasi transisi
         super.onBackPressed()
         // Tidak ada animasi khusus saat kembali
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

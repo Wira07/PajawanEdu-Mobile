@@ -2,6 +2,7 @@ package com.wira_fkom.pajawanedumobile.learning
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ class ArtikelActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         title = "Artikel"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable the Up button
 
         val articles = listOf(
             Article(
@@ -92,6 +94,16 @@ class ArtikelActivity : AppCompatActivity() {
             .setDuration(1000)
             .setStartDelay(200)
             .start()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
 
