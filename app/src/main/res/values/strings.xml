@@ -8,4 +8,7 @@
     <string name="profile">profile</string>
     <string name="back">back</string>
     <string name="favorite">favorite</string>
+    <string name="share_whatsapp">Share on WhatsApp</string>
+    <string name="share_facebook">Share on Facebook</string>
+    <string name="share_instagram">Share on Instagram</string>
 </resources>

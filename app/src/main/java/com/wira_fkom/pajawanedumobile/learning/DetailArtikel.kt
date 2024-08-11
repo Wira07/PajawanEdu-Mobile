@@ -1,9 +1,10 @@
 package com.wira_fkom.pajawanedumobile.learning
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.wira_fkom.pajawanedumobile.R
@@ -39,27 +40,35 @@ class DetailArtikel : AppCompatActivity() {
             .error(R.drawable.error)
             .into(binding.imageView)
 
+        // Setel TextView agar hanya menampilkan 8 baris teks pertama
+        binding.tvDescription.maxLines = 8
+        binding.tvDescription.ellipsize = TextUtils.TruncateAt.END
+
         // Setup "See More" button
         setupSeeMoreButton()
+
+        // Setup share buttons
     }
 
     private fun setupSeeMoreButton() {
-        val tvDescription = findViewById<TextView>(R.id.tvDescription)
-        val btnExpand = findViewById<Button>(R.id.btnExpand)
-
-        btnExpand.setOnClickListener {
+        binding.btnExpand.setOnClickListener {
             if (isExpanded) {
                 // Setel ke keadaan ringkas
-                tvDescription.maxLines = 3
-                tvDescription.ellipsize = android.text.TextUtils.TruncateAt.END
-                btnExpand.text = "Selengkapnya"
+                binding.tvDescription.maxLines = 8
+                binding.tvDescription.ellipsize = TextUtils.TruncateAt.END
+                binding.btnExpand.text = "Selengkapnya"
             } else {
                 // Setel ke keadaan penuh
-                tvDescription.maxLines = Int.MAX_VALUE
-                tvDescription.ellipsize = null
-                btnExpand.text = "Selengkapnya"
+                binding.tvDescription.maxLines = Int.MAX_VALUE
+                binding.tvDescription.ellipsize = null
+                binding.btnExpand.text = "Tampilkan Lebih Sedikit"
             }
             isExpanded = !isExpanded
+
+            // Memungkinkan scroll setelah teks diperluas
+            binding.scrollView.post {
+                binding.scrollView.fullScroll(View.FOCUS_DOWN)
+            }
         }
     }
 
