@@ -17,7 +17,6 @@ class QuizIPSActivity : AppCompatActivity() {
     private val interval: Long = 1000 // 1 second
     private var timeLeft: Long = countdownTime
 
-    // List of questions
     private val questions = listOf(
         Question("Presiden pertama?", listOf("Soekarno", "Hatta", "Suharto", "Habibie"), 0),
         Question("Ibu kota?", listOf("Jakarta", "Bandung", "Surabaya", "Medan"), 0),
@@ -39,9 +38,10 @@ class QuizIPSActivity : AppCompatActivity() {
         binding = ActivityQuizIpsactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadQuestion(currentQuestionIndex)
-
         title = "EduKids"
+
+        // Initialize question loading
+        loadQuestion(currentQuestionIndex)
 
         binding.firstOptionBtn.setOnClickListener { checkAnswer(0) }
         binding.secondOptionBtn.setOnClickListener { checkAnswer(1) }
@@ -55,7 +55,9 @@ class QuizIPSActivity : AppCompatActivity() {
     }
 
     private fun startCountdown() {
+        // Cancel any existing timer
         countDownTimer?.cancel()
+
         countDownTimer = object : CountDownTimer(timeLeft, interval) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeft = millisUntilFinished
@@ -64,13 +66,14 @@ class QuizIPSActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                showTimeUpDialog()
+                if (!isFinishing) {
+                    showTimeUpDialog()
+                }
             }
         }.start()
     }
 
     private fun showTimeUpDialog() {
-        countDownTimer?.cancel()
         AlertDialog.Builder(this)
             .setTitle("Waktu Habis!")
             .setMessage("Waktu Anda telah habis untuk menjawab pertanyaan ini.")
@@ -95,6 +98,7 @@ class QuizIPSActivity : AppCompatActivity() {
         binding.fourthOptionBtn.text = question.options[3]
         binding.questionNumberTextView.text = "Pertanyaan ${index + 1}/${questions.size}"
 
+        // Reset timer for new question
         timeLeft = countdownTime
         startCountdown()
     }
@@ -147,5 +151,11 @@ class QuizIPSActivity : AppCompatActivity() {
         intent.putExtra("TOTAL_QUESTIONS", questions.size)
         startActivity(intent)
         finish() // Optional: finish current activity
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Cancel the timer when the activity is destroyed
+        countDownTimer?.cancel()
     }
 }

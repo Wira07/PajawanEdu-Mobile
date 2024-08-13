@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wira_fkom.pajawanedumobile.adapter.ArticleAdapter
 import com.wira_fkom.pajawanedumobile.data.Article
 import com.wira_fkom.pajawanedumobile.databinding.ActivityArtikelBinding
+
 class ArtikelActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityArtikelBinding
@@ -106,4 +107,3 @@ class ArtikelActivity : AppCompatActivity() {
         }
     }
 }
-
