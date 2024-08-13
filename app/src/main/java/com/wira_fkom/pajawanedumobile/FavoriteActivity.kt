@@ -8,6 +8,7 @@ import com.wira_fkom.pajawanedumobile.adapter.ArticleAdapter
 import com.wira_fkom.pajawanedumobile.adapter.FavoriteManager
 import com.wira_fkom.pajawanedumobile.databinding.ActivityFavoriteBinding
 import com.wira_fkom.pajawanedumobile.data.Article
+import com.wira_fkom.pajawanedumobile.learning.DetailArtikel
 
 class FavoriteActivity : AppCompatActivity() {
 
@@ -23,7 +24,13 @@ class FavoriteActivity : AppCompatActivity() {
 
         val favoriteArticles = FavoriteManager.getFavorites(this)
         adapter = ArticleAdapter(favoriteArticles) { article ->
-            // Handle item click if needed
+            // Navigate to DetailArtikel when a favorite item is clicked
+            val intent = Intent(this, DetailArtikel::class.java).apply {
+                putExtra("title", article.title)
+                putExtra("description", article.description)
+                putExtra("imageUrl", article.imageUrl)
+            }
+            startActivity(intent)
         }
 
         binding.recyclerViewFavorites.layoutManager = LinearLayoutManager(this)
